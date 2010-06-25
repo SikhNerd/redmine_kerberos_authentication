@@ -17,7 +17,6 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 require 'krb5_auth'
-require 'iconv'
 
 class AuthSourceKerberos < AuthSource 
   validates_length_of :attr_login, :attr_firstname, :attr_lastname, :attr_mail, :maximum => 30, :allow_nil => true
@@ -27,7 +26,16 @@ class AuthSourceKerberos < AuthSource
     
     if authenticate_kerberos(login, password)
       logger.debug "Authentication successful for '#{login}'" if logger && logger.debug?
-      return {}
+
+      attrs =
+      {
+      :firstname => "",
+      :lastname => "",
+      :mail => "",
+      :auth_source_id => self.id,
+      } if(onthefly_register?)
+
+      attrs || nil
     end
   end
 
