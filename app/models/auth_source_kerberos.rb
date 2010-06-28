@@ -43,7 +43,7 @@ class AuthSourceKerberos < AuthSource
     begin
       Krb5Auth::Krb5.new.get_init_creds_password(username, password)
     rescue Krb5Auth::Krb5::Exception => text
-      raise "KerberosError: " + text
+      nil
     end
   end
 
