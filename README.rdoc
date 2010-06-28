@@ -3,7 +3,7 @@
 == Dependencies
 You need krb5-auth to use this plugin. 
 
-  gem install krb5-auth
+	gem install krb5-auth
 
 == Configuration
 Authentication is done against the system's default realm
@@ -13,12 +13,12 @@ organization's  realm.
 == Installation
 Go to your Redmine root directory and install the plugin like this:
 
-  cd {REDMINE_ROOT}
-  ./script/plugin install git://github.com/se/redmine_kerberos_authentication.git
+	cd ${REDMINE_ROOT}
+	./script/plugin install git://github.com/se/redmine_kerberos_authentication.git
 
 After that you need to add Kerberos to the list of available
 Authentication sources by running the migration rake task:
 
-  rake db:migrate_plugins
+	rake db:migrate_plugins
 
 That's it.
